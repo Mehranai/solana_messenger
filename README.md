@@ -26,21 +26,90 @@ The two participant keys must be sorted before initializing the conversation. Th
 
 ## Local Development
 
-Install the Solana CLI and Anchor CLI, then run:
+This project is pinned to the local Solana `1.18.20` and Anchor `0.30.1` toolchain.
 
-```bash
-anchor build
-anchor test
+Install these prerequisites:
+
+- Node.js / npm
+- Rust / Cargo
+- Solana CLI `1.18.20`
+- Anchor CLI `0.30.1`
+
+### Install Solana CLI
+
+For native Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force C:\solana-install-tmp
+Invoke-WebRequest -Uri https://release.solana.com/v1.18.20/solana-install-init-x86_64-pc-windows-msvc.exe -OutFile C:\solana-install-tmp\solana-install-init.exe
+C:\solana-install-tmp\solana-install-init.exe v1.18.20
 ```
 
-The checked-in program id is a placeholder. When you generate a real keypair, run `anchor keys sync` so `declare_id!`, `Anchor.toml`, and the generated IDL agree.
+Close and reopen PowerShell, then verify:
 
-On Windows PowerShell, prefer:
+```powershell
+solana --version
+```
+
+Expected version:
+
+```text
+solana-cli 1.18.20
+```
+
+Create a local wallet if you do not already have one:
+
+```powershell
+solana-keygen new -o $env:USERPROFILE\.config\solana\id.json
+solana config set --url localhost --keypair $env:USERPROFILE\.config\solana\id.json
+```
+
+### Install Anchor CLI
+
+This project uses a project-local Anchor install to avoid conflicts with other global Anchor versions:
 
 ```powershell
 .\install-tools.ps1
-.\build.ps1
 ```
 
-See [docs/local-development.md](docs/local-development.md) for the Solana `1.18.20` setup notes.
+This installs Anchor CLI `0.30.1` into `.tools\bin\anchor.exe`.
 
+If you prefer a global Anchor install instead:
+
+```powershell
+cargo install --force anchor-cli --version 0.30.1
+anchor --version
+```
+
+Expected version:
+
+```text
+anchor-cli 0.30.1
+```
+
+### Install Node Dependencies
+
+Install JavaScript dependencies:
+
+```powershell
+npm install
+```
+
+In terminal 1, start a local validator with generous local faucet limits:
+
+```powershell
+solana-test-validator --reset --faucet-sol 1000000 --faucet-per-request-sol-cap 100 --faucet-per-time-sol-cap 1000
+```
+
+In terminal 2, build, deploy, and run tests:
+
+```powershell
+.\install-tools.ps1
+.\build.ps1 -Test
+```
+
+The test command builds the Anchor program, deploys it to the local validator, and runs the TypeScript integration tests.
+
+The checked-in program id is a placeholder. When you generate a real keypair, run `anchor keys sync` so `declare_id!`, `Anchor.toml`, and the generated IDL agree.
+
+See [docs/local-development.md](docs/local-development.md) for the Solana `1.18.20` setup notes.
