@@ -118,7 +118,6 @@ See [docs/local-development.md](docs/local-development.md) for the Solana `1.18.
 after this we want to test the validation of code running on Typescript:
 
 ```powershell
-.\build.ps1 -Test  
 solana-test-validator --reset --faucet-sol 1000000 --faucet-per-request-sol-cap 100 --faucet-per-time-sol-cap 1000
+.\build.ps1 -Test  
 ```
->>>>>>> 4a5c43375d012475d8654c509348f0f406ec9d3d
