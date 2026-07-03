@@ -74,6 +74,7 @@ This project uses a project-local Anchor install to avoid conflicts with other g
 
 This installs Anchor CLI `0.30.1` into `.tools\bin\anchor.exe`.
 
+<<<<<<< HEAD
 If you prefer a global Anchor install instead:
 
 ```powershell
@@ -113,3 +114,11 @@ The test command builds the Anchor program, deploys it to the local validator, a
 The checked-in program id is a placeholder. When you generate a real keypair, run `anchor keys sync` so `declare_id!`, `Anchor.toml`, and the generated IDL agree.
 
 See [docs/local-development.md](docs/local-development.md) for the Solana `1.18.20` setup notes.
+=======
+after this we want to test the validation of code running on Typescript:
+
+```powershell
+.\build.ps1 -Test  
+solana-test-validator --reset --faucet-sol 1000000 --faucet-per-request-sol-cap 100 --faucet-per-time-sol-cap 1000
+```
+>>>>>>> 4a5c43375d012475d8654c509348f0f406ec9d3d
