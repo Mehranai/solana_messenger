@@ -1,0 +1,18 @@
+[toolchain]
+anchor_version = "0.30.1"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+encrypted_messenger = "GG4nDe5Smu2XmSdZiY6qhifjma95LG6H4Zvn7S54sGsY"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "npm run test:ts"
+
+[hooks]

@@ -1,0 +1,16 @@
+/target/
+/node_modules/
+/.anchor/
+/.docker-tmp/
+/.tools/
+/dist/
+*.tsbuildinfo
+
+/test-ledger
+.dockerignore
+docker-compose.yml
+
+Dockerfile
+scripts/docker
+/docs/presentation_walkthrough.md
+/docs/docker.md
