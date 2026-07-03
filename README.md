@@ -44,3 +44,9 @@ On Windows PowerShell, prefer:
 
 See [docs/local-development.md](docs/local-development.md) for the Solana `1.18.20` setup notes.
 
+after this we want to test the validation of code running on Typescript:
+
+```powershell
+.\build.ps1 -Test  
+solana-test-validator --reset --faucet-sol 1000000 --faucet-per-request-sol-cap 100 --faucet-per-time-sol-cap 1000
+```
